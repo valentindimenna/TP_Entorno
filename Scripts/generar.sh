@@ -26,12 +26,8 @@ do
 done
 
 #Compresión
-gzip -r ../Datasets/imgs
-
-#Generando md5sum de cada imagen comprimida
-for imagen in $(find ../Datasets/imgs -type f)
-do
-	md5sum $imagen > ../Datasets/imgs/$(basename $imagen).sum #Generando archivo sum
-done
+tar -C ../Datasets -czvf ../Datasets/imgs.tar.gz  imgs/
+#Generando md5sum del
+md5sum  ../Datasets/imgs.tar.gz > ../Datasets/imgs.tar.gz.sum #Generando archivo sum
 
 exit 0
