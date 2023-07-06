@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Validando que la cantidad de argumentos ingresada es 1
+#Validando que la cantidad de argumentos ingresada sea 1
 if [[ $# -ne 1 ]]
 then
 	echo "ERROR, debe ingresar un único argumento"
@@ -13,21 +13,20 @@ then
 	exit 2
 fi
 
-#Bucle que genera la cantidad de imagenes pasadas por argumento. Se guardarán dentro de ../Datasets/imgs
+#Bucle que genera la cantidad de imagenes pasadas por argumento. Se guardarán dentro de Datasets/imgs
 for ((i=1; i<=$1; i++))
 do	 
-	nombre=$(sed -n "$RANDOM p" ../Datasets/nombres) #Eligiendo nombre random
-	#echo $nombre
-	nombre=$(echo $nombre | cut -d ',' -f 1) #Modificando nombre para que sea adecuado
-	nombre=$(echo $nombre | tr -d ' ') #Quitando espacios dentro del nombre para que sea adecuado
-	#echo $nombre
-	wget https://thispersondoesnotexist.com/ -O "../Datasets/imgs/$nombre.jpeg" #Generando imagen random
+	NOMBRE=$(sed -n "$RANDOM p" Datasets/nombres) #Eligiendo nombre random
+	NOMBRE=$(echo $NOMBRE | cut -d ',' -f 1) #Modificando el nombre para que sea adecuado
+	NOMBRE=$(echo $NOMBRE | tr -d ' ') #Quitando espacios dentro del nombre para que sea adecuado
+	wget https://thispersondoesnotexist.com/ -O "Datasets/imgs/$NOMBRE.jpeg" #Generando imagen random
 	sleep 1
 done
 
 #Compresión
-tar -C ../Datasets -czvf ../Datasets/imgs.tar.gz  imgs/
-#Generando md5sum del
-md5sum  ../Datasets/imgs.tar.gz > ../Datasets/imgs.tar.gz.sum #Generando archivo sum
+tar -czf Datasets/imgs.tar.gz -C Datasets/imgs $(ls Datasets/imgs)
+
+#Generando md5sum del archivo comprimido
+echo $(md5sum  Datasets/imgs.tar.gz) | cut -d ' ' -f 1  > Datasets/imgs.tar.gz.sum
 
 exit 0
