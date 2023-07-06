@@ -18,5 +18,4 @@ for imagen in "$carpeta"/*; do
 		echo "$nombre_imagen"
 	fi 
 done
-
-
+exit 0
