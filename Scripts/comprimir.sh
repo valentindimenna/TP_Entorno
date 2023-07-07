@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIRECTORIO="Datasets/imgs_descomprimidas"
-
+mkdir -p Datasets/imagenes_comprimir #Directorio donde se van a guardar todos los archivos
 touch Datasets/nombres_imagenes.txt #Archivo con lista de nombres de las imágenes
 touch Datasets/nombres_imagenes_validos.txt #Archivo con lista de nombres válidos
 touch Datasets/nombres_imagenes_a.txt #Archivo con total de personas cuyo nombre termina con 'a'
@@ -25,6 +25,6 @@ echo "$TOTAL_A" > Datasets/nombres_imagenes_a.txt #Imprimiendo el resultado del 
 
 #Generando archivo comprimido con todos los archivos del trabajo
 
-
-
+tar -czf Datasets/archivos_comprimidos.tar.gz -C Datasets nombres_imagenes_validos.txt nombres_imagenes.txt nombres_imagenes_a.txt imgs
+rm Datasets/nombres_imagenes_validos.txt Datasets/nombres_imagenes.txt Datasets/nombres_imagenes_a.txt
 exit 0
