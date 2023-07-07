@@ -1,41 +1,30 @@
 #!/bin/bash
 
-carpeta="../Datasets/imgs"
+DIRECTORIO="Datasets/imgs_descomprimidas"
 
-touch ../Datasets/img_nombre_imagenes.txt
-touch ../Datasets/img_nombre_imagenes_validas.txt
-touch ../Datasets/img_termina_a.txt
-total_a=0
-for imagen in "$carpeta"/*; do
-	if echo "$imagen" | grep -q "\.sum$";
-		then 
-		echo "no es una imagen $(basename $imagen)"
-		
-	elif 	echo "$imagen" | grep -q ^\.\./Datasets/imgs/[A-Z][a-z]*\.jpeg$
-		then 
-		#echo "imagen tiene nombre Valido"
-		nombre=$(basename $imagen)
-		#echo "$nombre"
-		echo "$nombre">> ../Datasets/img_nombre_imagenes_validas.txt
-		echo "$nombre">> ../Datasets/img_nombre_imagenes.txt
-		
-		if echo "$nombre" | grep -q ^[^/]*[aA]\.jpeg$ ; #verifico si el nombre de la imagen termina en 'a' o 'A'
-			then 
-			#echo "nombre termina en a/A $nombre"
-			total_a=$((total_a + 1))
-		fi
-		
-	else
-		nombre=$(basename $imagen)
-		echo "$nombre">> ../Datasets/img_nombre_imagenes.txt
-		
-		if echo "$nombre" | grep -q ^[^/]*[aA]\.jpeg$ ; #verifico si el nombre de la imagen termina en 'a'
-			then 
-			#echo "nombre termina en a/A $nombre"
-			total_a=$((total_a + 1))
-		fi
+touch Datasets/nombres_imagenes.txt #Archivo con lista de nombres de las imágenes
+touch Datasets/nombres_imagenes_validos.txt #Archivo con lista de nombres válidos
+touch Datasets/nombres_imagenes_a.txt #Archivo con total de personas cuyo nombre termina con 'a'
+
+TOTAL_A=0 #Contador de nombres terminados en 'a' inicializado en 0
+#Bucle que recorre cada imagen perteneciente a Datasets/imgs_descomprimidas
+for IMAGEN in "$DIRECTORIO"/*; do 
+	NOMBRE=$(basename $IMAGEN) #Nombre del archivo sin ruta
+	echo "$NOMBRE">> Datasets/nombres_imagenes.txt #Guardando nombre en lista de nombres de las imágenes
+	#Chequeando si el nombre es válido. En caso de ser verdadero, se guarda en la lista de nombres válidos
+	if [[ $NOMBRE =~ ^[A-Z][a-z].*\.jpeg$ ]]; then
+		echo "$NOMBRE">> Datasets/nombres_imagenes_validos.txt
 	fi
-
+#Verificando si el nombre de la imagen termina en 'a' o 'A'. Si es verdadero, se suma 1 al contador TOTAL_A
+	if echo "$NOMBRE" | grep -q ^[^/]*[aA]\.jpeg$; then 
+		TOTAL_A=$((TOTAL_A + 1))
+	fi
 done
-echo "$total_a">../Datasets/img_termina_a.txt
+
+echo "$TOTAL_A" > Datasets/nombres_imagenes_a.txt #Imprimiendo el resultado del contador en su archivo
+
+#Generando archivo comprimido con todos los archivos del trabajo
+
+
+
 exit 0

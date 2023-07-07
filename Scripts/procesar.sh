@@ -1,21 +1,25 @@
 #!/bin/bash
  
-carpeta="../Datasets/imgs"
-
-if [ -z "$(ls  "$carpeta")" ];then 
-	echo "La carpeta esta vacia no hay imagenes por procesar"
+DIRECTORIO="Datasets/imgs_descomprimidas" #Directorio resultado del script descomprimir.sh
+#Validando que el directorio exista. Si no existe es probable que no se haya ejecutado descomprimir.sh
+if ! [[ -d "$DIRECTORIO" ]]; then 
+	echo "El directorio NO existe. Debes generar y descomprimir las imágenes previo al uso de este script"
 	exit 1
 fi
-for imagen in "$carpeta"/*; do
-	if echo "$imagen" | grep ^\.\./Datasets/imgs/[A-Z][a-z]*\.jpeg$
-		then
-		echo "nombre de archivo Valido"
-		convert $imagen -gravity center -resize 512x512+0+0 $imagen
-
+#Validando que el directorio no esté vacío. Si lo está, es probable que el número de imágenes generadas sea 0
+if [[ -z "$(ls "$DIRECTORIO")" ]]; then 
+	echo "El directorio está vacío. Debes generar y descomprimir las imágenes previo al uso de este script"
+	exit 2
+fi
+#Bucle que recorre cada imagen perteneciente a Datasets/imgs_descomprimidas
+for IMAGEN in "$DIRECTORIO"/*; do
+	NOMBRE=$(basename $IMAGEN) #Nombre del archivo sin ruta
+	if [[ $NOMBRE =~ ^[A-Z][a-z].*\.jpeg$ ]]; then #Comprobando que el nombre sea válido
+		echo "$NOMBRE: nombre de archivo válido"
+		convert $IMAGEN -gravity center -resize 512x512+0+0 $IMAGEN #Nombre válido entonces se procesa la imagen
 	else
-		echo "nombre de archivo no valido: "
-		nombre_imagen=$(basename $imagen)
-		echo "$nombre_imagen"
+		echo "$NOMBRE: nombre de archivo NO valido" #Mensaje de nombre inválido, no cataloga como error
 	fi 
 done
+
 exit 0

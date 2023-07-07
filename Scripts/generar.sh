@@ -13,9 +13,9 @@ then
 	exit 2
 fi
 
+mkdir -p Datasets/imgs #Directorio donde se guardarán las imágenes
 #Bucle que genera la cantidad de imagenes pasadas por argumento. Se guardarán dentro de Datasets/imgs
-for ((i=1; i<=$1; i++))
-do	 
+for ((i=1; i<=$1; i++)); do	 
 	NOMBRE=$(sed -n "$RANDOM p" Datasets/nombres) #Eligiendo nombre random
 	NOMBRE=$(echo $NOMBRE | cut -d ',' -f 1) #Modificando el nombre para que sea adecuado
 	NOMBRE=$(echo $NOMBRE | tr -d ' ') #Quitando espacios dentro del nombre para que sea adecuado
