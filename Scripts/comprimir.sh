@@ -24,7 +24,7 @@ done
 echo "$TOTAL_A" > Datasets/nombres_imagenes_a.txt #Imprimiendo el resultado del contador en su archivo
 
 #Generando archivo comprimido con todos los archivos del trabajo
-
 tar -czf Datasets/archivos_comprimidos.tar.gz -C Datasets nombres_imagenes_validos.txt nombres_imagenes.txt nombres_imagenes_a.txt imgs
 rm Datasets/nombres_imagenes_validos.txt Datasets/nombres_imagenes.txt Datasets/nombres_imagenes_a.txt
+
 exit 0
