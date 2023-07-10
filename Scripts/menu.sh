@@ -1,30 +1,35 @@
 #!/bin/bash
-opciones="Generar Comprimir Procesar Descomprimir Salir"
+opciones="Generar Descomprimir Procesar Comprimir Salir"
 PS3="Elija una opcion: "
 select opcion in $opciones
 do
 	case $opcion in 
 		Generar)
-		
-			echo "$opcion\n"
-			bash generar.sh
-			;;
-		Comprimir)
-		
-			echo "$opcion\n"
-			bash comprimir.sh
-			;;
-		Procesar)
-		
-			echo "$opcion\n"
-			bash procesar.sh
+			echo "--------------------------------------------"
+			echo "$opcion"
+			echo -n "Ingrese cantidad de imágenes a generar: "; read CANTIDAD
+			bash Scripts/generar.sh $CANTIDAD
 			;;
 		Descomprimir)
-		
-			echo "$opcion\n"
-			bash descomprimir.sh
+			echo "--------------------------------------------"
+			echo "$opcion"
+			echo -n "Ingrese archivo con las imágenes comprimidas: "; read ARCH
+			echo -n "Ingrese archivo con suma de verificación: "; read SUMA
+			bash Scripts/descomprimir.sh $ARCH $SUMA
+			;;
+		Procesar)
+			echo "--------------------------------------------"
+			echo "$opcion"
+			bash Scripts/procesar.sh
+			;;
+		Comprimir)
+			echo "--------------------------------------------"
+			echo "$opcion"
+			echo 
+			bash Scripts/comprimir.sh
 			;;
 		Salir)
+			echo "--------------------------------------------"
 			echo "$opcion"
 			break
 			;;

@@ -3,14 +3,10 @@
 DIRECTORIO="Datasets/imgs_descomprimidas" #Directorio resultado del script descomprimir.sh
 #Validando que el directorio exista. Si no existe es probable que no se haya ejecutado descomprimir.sh
 if ! [[ -d "$DIRECTORIO" ]]; then 
-	echo "El directorio NO existe. Debes generar y descomprimir las imágenes previo al uso de este script"
+	echo "El directorio NO existe. Es probable que aún no se hayan descomprimido o generado las imágenes."
 	exit 1
 fi
-#Validando que el directorio no esté vacío. Si lo está, es probable que el número de imágenes generadas sea 0
-if [[ -z "$(ls "$DIRECTORIO")" ]]; then 
-	echo "El directorio está vacío. Debes generar y descomprimir las imágenes previo al uso de este script"
-	exit 2
-fi
+
 #Bucle que recorre cada imagen perteneciente a Datasets/imgs_descomprimidas
 for IMAGEN in "$DIRECTORIO"/*; do
 	NOMBRE=$(basename $IMAGEN) #Nombre del archivo sin ruta
@@ -21,5 +17,7 @@ for IMAGEN in "$DIRECTORIO"/*; do
 		echo "$NOMBRE: nombre de archivo NO valido" #Mensaje de nombre inválido, no cataloga como error
 	fi 
 done
+
+mv $DIRECTORIO Datasets/imgs_procesadas #Renombrando directorio para que el usuario note los cambios
 
 exit 0

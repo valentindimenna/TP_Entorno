@@ -25,6 +25,7 @@ done
 
 #Compresión
 tar -czf Datasets/imgs.tar.gz -C Datasets/imgs $(ls Datasets/imgs)
+rm -r Datasets/imgs #Borrando directorio sin comprimir
 
 #Generando md5sum del archivo comprimido
 echo $(md5sum  Datasets/imgs.tar.gz) | cut -d ' ' -f 1  > Datasets/imgs.tar.gz.sum

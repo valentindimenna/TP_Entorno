@@ -1,7 +1,12 @@
 #!/bin/bash
 
-DIRECTORIO="Datasets/imgs_descomprimidas"
-mkdir -p Datasets/imagenes_comprimir #Directorio donde se van a guardar todos los archivos
+DIRECTORIO="Datasets/imgs_procesadas"
+#Validando que el directorio exista. Si no existe es probable que no se haya ejecutado procesar.sh
+if ! [[ -d "$DIRECTORIO" ]]; then
+	echo "El directorio NO existe. Es probable que las imagenes no hayan sido procesadas previamente."
+	exit 1
+fi
+
 touch Datasets/nombres_imagenes.txt #Archivo con lista de nombres de las imágenes
 touch Datasets/nombres_imagenes_validos.txt #Archivo con lista de nombres válidos
 touch Datasets/nombres_imagenes_a.txt #Archivo con total de personas cuyo nombre termina con 'a'
@@ -24,7 +29,9 @@ done
 echo "$TOTAL_A" > Datasets/nombres_imagenes_a.txt #Imprimiendo el resultado del contador en su archivo
 
 #Generando archivo comprimido con todos los archivos del trabajo
-tar -czf Datasets/archivos_comprimidos.tar.gz -C Datasets nombres_imagenes_validos.txt nombres_imagenes.txt nombres_imagenes_a.txt imgs
+tar -czf Datasets/archivos_comprimidos.tar.gz -C Datasets nombres_imagenes_validos.txt nombres_imagenes.txt nombres_imagenes_a.txt imgs_procesadas
+
 rm Datasets/nombres_imagenes_validos.txt Datasets/nombres_imagenes.txt Datasets/nombres_imagenes_a.txt
+rm -r $DIRECTORIO
 
 exit 0
