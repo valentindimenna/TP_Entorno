@@ -1,10 +1,10 @@
 # Trabajo Práctico final - Entorno de programación 2023
 
-##¿Qué hace?
+## ¿Qué hace?
 
 Este proyecto genera un contenedor que al ejecutarse presenta un menú de opciones para descargar, procesar, analizar y comprimir un lote de imágenes.
 
-##¿Cómo ejecutarlo?
+## ¿Cómo ejecutarlo?
 
 _Primero se debe instalar la imágen de docker en la que trabajaremos:_
 ```
@@ -14,7 +14,7 @@ _Luego, para correr el docker basta con utilizar el script ejecutar.sh:_
 ```
 bash ejecutar.sh
 ```
-###Una vez dentro del docker...
+### Una vez dentro del docker...
 
 _El docker se iniciará con el siguiente menú de opciones:_
 ```
@@ -27,6 +27,6 @@ Elija una opcion:
 ```
 Lo recomendado es que siga el orden de los items para que el programa funcione correctamente.
 
-##Autores:
+## Autores:
 * **Alva Máximo**
 * **Dimenna Valentín**
