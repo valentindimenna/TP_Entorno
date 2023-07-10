@@ -10,7 +10,7 @@ fi
 #Bucle que recorre cada imagen perteneciente a datasets/imgs_descomprimidas
 for IMAGEN in "$DIRECTORIO"/*; do
 	NOMBRE=$(basename $IMAGEN) #Nombre del archivo sin ruta
-	if  echo "$NOMBRE" | grep -q ^[A-Z][a-z]*\.jpeg$ ; then #Comprobando que el nombre sea válido
+	if [[ $NOMBRE =~ ^[A-Z][a-z].*\.jpeg$ ]]; then #Comprobando que el nombre sea válido
 		echo "$NOMBRE: nombre de archivo válido"
 		convert $IMAGEN -gravity center -resize 512x512+0+0 $IMAGEN #Nombre válido entonces se procesa la imagen
 	else

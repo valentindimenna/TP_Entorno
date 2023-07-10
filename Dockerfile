@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk update && apk add bash imagemagick
+RUN apk update && apk add bash imagemagick file
 
 WORKDIR /app
 
