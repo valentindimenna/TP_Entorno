@@ -4,6 +4,6 @@ RUN apk update && apk add bash imagemagick
 
 WORKDIR /app
 
-ADD Scripts Scripts
+ADD scripts scripts
 
-ENTRYPOINT ["bash", "/app/Scripts/menu.sh"]
+ENTRYPOINT ["bash", "/app/scripts/menu.sh"]

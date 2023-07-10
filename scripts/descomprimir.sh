@@ -24,8 +24,8 @@ fi
 #Comparamos la suma de verificación del segundo argumento con la del archivo del primer argumento
 if [[ $(echo $(md5sum $1) | cut -d ' ' -f 1) == $(cat $2) ]]; then
 	echo "La suma de verificación proporcionada coincide con la del archivo, se procederá a descomprimir."
-	mkdir -p Datasets/imgs_descomprimidas #Se crea un directorio donde se descomprimirá el archivo
-	tar -xf Datasets/imgs.tar.gz -C Datasets/imgs_descomprimidas #Descomprimiendo el archivo
+	mkdir -p datasets/imgs_descomprimidas #Se crea un directorio donde se descomprimirá el archivo
+	tar -xf datasets/imgs.tar.gz -C datasets/imgs_descomprimidas #Descomprimiendo el archivo
 else
 	echo "La suma de verificación proporcionada NO coincide con la del archivo."
 fi

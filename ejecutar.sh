@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -it --entrypoint bash -v ./Datasets:/app/Datasets TP_Entorno
+docker run -it --entrypoint bash -v ./datasets:/app/datasets tp_entorno

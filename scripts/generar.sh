@@ -13,21 +13,21 @@ then
 	exit 2
 fi
 
-mkdir -p Datasets/imgs #Directorio donde se guardarán las imágenes
-#Bucle que genera la cantidad de imagenes pasadas por argumento. Se guardarán dentro de Datasets/imgs
+mkdir -p datasets/imgs #Directorio donde se guardarán las imágenes
+#Bucle que genera la cantidad de imagenes pasadas por argumento. Se guardarán dentro de datasets/imgs
 for ((i=1; i<=$1; i++)); do	 
-	NOMBRE=$(sed -n "$RANDOM p" Datasets/nombres) #Eligiendo nombre random
+	NOMBRE=$(sed -n "$RANDOM p" datasets/nombres) #Eligiendo nombre random
 	NOMBRE=$(echo $NOMBRE | cut -d ',' -f 1) #Modificando el nombre para que sea adecuado
 	NOMBRE=$(echo $NOMBRE | tr -d ' ') #Quitando espacios dentro del nombre para que sea adecuado
-	wget https://thispersondoesnotexist.com/ -O "Datasets/imgs/$NOMBRE.jpeg" #Generando imagen random
+	wget https://thispersondoesnotexist.com/ -O "datasets/imgs/$NOMBRE.jpeg" #Generando imagen random
 	sleep 1
 done
 
 #Compresión
-tar -czf Datasets/imgs.tar.gz -C Datasets/imgs $(ls Datasets/imgs)
-rm -r Datasets/imgs #Borrando directorio sin comprimir
+tar -czf datasets/imgs.tar.gz -C Datasets/imgs $(ls Datasets/imgs)
+rm -r datasets/imgs #Borrando directorio sin comprimir
 
 #Generando md5sum del archivo comprimido
-echo $(md5sum  Datasets/imgs.tar.gz) | cut -d ' ' -f 1  > Datasets/imgs.tar.gz.sum
+echo $(md5sum  datasets/imgs.tar.gz) | cut -d ' ' -f 1  > Datasets/imgs.tar.gz.sum
 
 exit 0

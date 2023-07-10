@@ -8,25 +8,25 @@ do
 			echo "--------------------------------------------"
 			echo "$opcion"
 			echo -n "Ingrese cantidad de imágenes a generar: "; read CANTIDAD
-			bash Scripts/generar.sh $CANTIDAD
+			bash scripts/generar.sh $CANTIDAD
 			;;
 		Descomprimir)
 			echo "--------------------------------------------"
 			echo "$opcion"
 			echo -n "Ingrese archivo con las imágenes comprimidas: "; read ARCH
 			echo -n "Ingrese archivo con suma de verificación: "; read SUMA
-			bash Scripts/descomprimir.sh $ARCH $SUMA
+			bash scripts/descomprimir.sh $ARCH $SUMA
 			;;
 		Procesar)
 			echo "--------------------------------------------"
 			echo "$opcion"
-			bash Scripts/procesar.sh
+			bash scripts/procesar.sh
 			;;
 		Comprimir)
 			echo "--------------------------------------------"
 			echo "$opcion"
 			echo 
-			bash Scripts/comprimir.sh
+			bash scripts/comprimir.sh
 			;;
 		Salir)
 			echo "--------------------------------------------"
