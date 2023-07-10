@@ -13,8 +13,10 @@ do
 		Descomprimir)
 			echo "--------------------------------------------"
 			echo "$opcion"
-			echo -n "Ingrese archivo con las imágenes comprimidas: "; read ARCH
-			echo -n "Ingrese archivo con suma de verificación: "; read SUMA
+			#echo -n "Ingrese archivo con las imágenes comprimidas: "; read ARCH
+			#echo -n "Ingrese archivo con suma de verificación: "; read SUMA
+			ARCH=datasets/imgs.tar.gz
+			SUMA=datasets/imgs.tar.gz.sum
 			bash scripts/descomprimir.sh $ARCH $SUMA
 			;;
 		Procesar)
@@ -25,7 +27,6 @@ do
 		Comprimir)
 			echo "--------------------------------------------"
 			echo "$opcion"
-			echo 
 			bash scripts/comprimir.sh
 			;;
 		Salir)

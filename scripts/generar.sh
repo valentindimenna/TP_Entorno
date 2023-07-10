@@ -24,10 +24,10 @@ for ((i=1; i<=$1; i++)); do
 done
 
 #Compresión
-tar -czf datasets/imgs.tar.gz -C Datasets/imgs $(ls Datasets/imgs)
+tar -czf datasets/imgs.tar.gz -C datasets/imgs $(ls datasets/imgs)
 rm -r datasets/imgs #Borrando directorio sin comprimir
 
 #Generando md5sum del archivo comprimido
-echo $(md5sum  datasets/imgs.tar.gz) | cut -d ' ' -f 1  > Datasets/imgs.tar.gz.sum
+echo $(md5sum  datasets/imgs.tar.gz) | cut -d ' ' -f 1  > datasets/imgs.tar.gz.sum
 
 exit 0
